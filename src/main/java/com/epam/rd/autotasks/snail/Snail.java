@@ -8,6 +8,7 @@ public class Snail
         //Write a program that reads a,b and h (line by lyne in this order) and prints
         //the number of days for which the snail reach the top of the tree.
         //a - feet that snail travels up each day, b - feet that slides down each night, h - height of the tree
+         
         Scanner scanner = new Scanner(System.in);
 
         int up = scanner.nextInt();
@@ -15,10 +16,10 @@ public class Snail
         int height = scanner.nextInt();
 
 
-        int start = up;
+        int distance = up - down;
         int day = 1;
 
-        if ((start < down) && up < height) {
+        if (down >= up && up < height) {
             System.out.println("Impossible");
             return;
         } else if (up >= height) {
@@ -26,12 +27,15 @@ public class Snail
             return;
         }
 
-        while (start < height) {
-            start = (start + up) - down;
+        while (distance < height) {
+            distance = distance + up;
             day++;
+            if (distance >= height) {
+                System.out.println(day);
+                return;
+            }
+            distance = distance - down;
         }
-        System.out.println(day);
-
         scanner.close();
     }
 }
