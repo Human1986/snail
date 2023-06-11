@@ -14,19 +14,24 @@ public class Snail
         int down = scanner.nextInt();
         int height = scanner.nextInt();
 
-        if ((up <= down)) {
+
+        int start = up;
+        int day = 1;
+
+        if ((start < down) && up < height) {
             System.out.println("Impossible");
-        } else {
-            int day = 1;
-            int start = up;
-
-            while (start < height) {
-
-                start = (start + up) - down;
-                day++;
-            }
+            return;
+        } else if (up >= height) {
             System.out.println(day);
+            return;
         }
+
+        while (start < height) {
+            start = (start + up) - down;
+            day++;
+        }
+        System.out.println(day);
+
         scanner.close();
     }
 }
